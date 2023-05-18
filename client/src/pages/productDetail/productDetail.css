@@ -1,0 +1,170 @@
+.productDetail {
+  display: flex;
+  justify-content: center;
+}
+
+.containerPrdDetail {
+  background-color: lightcyan;
+  /* height: calc(100vh-50px); */
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* image product */
+.imageProduct {
+  width: 512px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.imgShow {
+  margin: 20px 6px 5px 6px;
+  width: 500px;
+  height: 500px;
+}
+
+.imgShow>img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.imgList {
+  width: 500px;
+  height: 100px;
+  margin: 5px 6px 20px 6px;
+  overflow: auto;
+  display: flex;
+}
+
+.imgList::-webkit-scrollbar {
+  display: none;
+}
+
+.imgListShow{
+  display: flex;
+  max-width: 500px;
+}
+
+.imgListShow>img {
+  width: calc(490px/5);
+  border-radius: 3px;
+  border: 1px solid #eee;
+}
+
+/* describe product */
+.describeProduct {
+  background-color: lightcyan;
+  width: 512px;
+  height: 100%;
+  max-height: 768px;
+  max-width: 512px;
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.name{
+  margin: 20px 6px 10px 6px;
+  height: 30px;
+}
+
+.name>span {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.price{
+  margin: 0px 6px 10px 6px;
+  height: 30px;
+}
+
+.price>span {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+
+.hargaDiskonPd{
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hargadiskPd>h3{
+  color: #868d97;
+  font-weight: 100;
+  font-size: 20;
+  text-decoration: line-through;
+  margin-top: 5px;
+}
+.diskonPd{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -10px;
+  height: 20px;
+}
+
+.diskonPd>h2{
+  font-size: 30px;
+}
+
+.diskonPd>span{
+  display: flex;
+  align-items: center;
+  height: fit-content;
+  background-color: #f72626;
+  margin-left: 5px;
+  margin-top: -5px;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+.desc{
+  margin: 30px 6px 10px 6px;
+  height: 420px;
+  overflow: auto;
+}
+
+.desc::-webkit-scrollbar {
+  display: none;
+}
+
+.desc>span {
+  font-size: 15px;
+}
+
+.qty input{
+  margin: 0px 6px 10px 6px;
+  width: 30px;
+  height: 30px;
+}
+
+.describeProduct > button {
+  margin: 0px 6px 10px 6px;
+  width: 150px;
+  height: 50px;
+  border: 2px solid #003580;
+  color: black;
+  background: lightblue;
+  border-radius: 10px;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+.describeProduct:hover > button {
+  cursor: pointer;
+}
+.describeProduct > button:hover {
+  border: 2px solid lightblue;
+  color: white;
+  background: #003580;  
+  transition: 0.5s;
+  cursor: pointer;
+}

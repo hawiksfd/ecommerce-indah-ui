@@ -1,0 +1,85 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+}
+
+.navContainer {
+  height: 50px;
+  background-color: #003580;
+  width: 100%;
+  max-width: 1024px;
+  color: white;
+  /* margin-bottom: 5px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  /* position: sticky; */
+  top: 0px;
+}
+
+.search {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  padding: 2px;
+}
+
+.searchItem {
+  width: 500px;
+  height: 30px;
+  border: none;
+}
+
+.searchIcon {
+  background-color: #003580;
+  height: 30px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  border-radius: 2px;
+  cursor: pointer;
+  margin: 0 1.2px 0 0;
+}
+
+.searchIcons {
+  color: white;
+  height: 100%;
+  width: 20px;
+}
+
+.rightIcon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.shopIcons2 {
+  color: white;
+  height: 20px;
+}
+
+.badge {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: 10px;
+  /* right: -10px; */
+  /* padding: 5px; */
+  border-radius: 50%;
+  background: red;
+  text-align: center;
+  color: white;
+  z-index: 2;
+}
+
+.navButton {
+  margin-left: 20px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #003580;
+  font-size: 100%;
+}

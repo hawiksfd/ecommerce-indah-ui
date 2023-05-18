@@ -1,0 +1,175 @@
+.containerSetting{
+  display: flex;
+  flex-direction: column;
+  background-color: lightcyan;
+  border: 1px solid #eaeaea;
+  border-radius: 2px;
+  height: 680px;
+}
+
+.tabs {  
+  display: flex;
+  margin-bottom: 5px;
+  background-color: #8e8c8c;
+  
+}
+
+.tab {  
+  justify-content: center;
+  align-items: center;
+  width: 716px;
+  background: white; 
+  padding: 2em 0;  
+  border: none;
+  cursor: pointer;
+  margin-bottom: 2px;
+  
+}
+
+.tab:not(:last-child) {
+  border-right: 1px solid #003580;  
+}
+
+.tab.active {
+  background: lightcyan;
+  font-weight: bold;
+}
+
+.content {
+  display: none;
+  height: 600px;
+  overflow: auto;
+  border: 1px solid #eaeaea;
+  border-radius: 3px;
+}
+
+.content::-webkit-scrollbar{
+ display: none;
+}
+
+.content.active {
+  display: block;
+}
+
+.addressData{
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.biodata{
+  width: 100%;
+  gap: 10px;
+}
+
+.data{
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  /* margin-bottom: 10px; */
+  height: 40px;
+  /* justify-content: center; */
+  align-items: center;
+}
+.dataactive{
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  height: 40px;
+  align-items: center;
+}
+
+.dataTitle{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 200px;
+}
+
+
+.data>span{
+  padding: 0.5rem; 
+  font-size: 0.875rem;
+  width: 70%;
+}
+
+.data>select{
+  display: none;
+}
+
+.data>input{
+  display: none;
+}
+
+.dataactive>span{
+  display: none;
+}
+
+
+.dataactive>select{
+  padding: 0.5rem; 
+  font-size: 0.875rem;
+  width: 70%;
+}
+
+.dataactive>input{
+  padding: 0.5rem; 
+  font-size: 0.875rem;
+  width: 70%;
+}
+
+
+.buttonAddress{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.editAddress{
+  margin: 10px;
+  width: 120px;
+  height: 40px;
+  border: 2px solid #1ced2a;
+  color: black;
+  background: lightblue;
+  margin-left: 40px;
+  border-radius: 3px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: fixed;
+}
+
+.editAddress:hover {
+  border: 2px solid lightblue;
+  color: white;
+  background: #1ced2a;  
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.saveAddress{
+  margin: 10px;
+  width: 120px;
+  height: 40px;
+  border: 2px solid #003580;
+  color: black;
+  background: lightblue;
+  border-radius: 3px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: fixed;
+  right: 25px;
+}
+
+
+.saveAddress:hover {
+  border: 2px solid lightblue;
+  color: white;
+  background: #003580;  
+  transition: 0.5s;
+  cursor: pointer;
+}

@@ -1,0 +1,197 @@
+.MyAccContainer{
+  display: flex;
+  flex-direction: column;
+  background-color: lightcyan;
+  border: 1px solid #eaeaea;
+  border-radius: 2px;
+  height: 680px;
+}
+
+.titleProfil{
+  height: 50px;
+  border-bottom: 1px solid #E1E8EE;
+  padding: 15px;
+  color: #5E6977;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 5px;
+}
+
+.profilContent{
+  padding: 15px;
+  color: #5E6977;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+}
+
+.biodata{
+  width: 100%;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.data{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-bottom: 10px;
+  height: 40px;
+  align-items: center;
+}
+
+.dataactived{
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-bottom: 10px;
+  height: 40px;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.dataTitle{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 200px;
+}
+
+/* .formNama{
+  display: flex;
+  flex-direction: column;
+} */
+
+/* .data>input{
+  padding: 0.5rem; 
+  font-size: 0.875rem;
+  width: 70%;
+} */
+
+.dataactived>input{
+  padding: 0.5rem; 
+  font-size: 0.875rem;
+  width: 70%;
+}
+
+
+.imgProfil{
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.imgProfil>img{
+  height: 100px;
+  width: 100px;
+}
+
+.imgProfil>button{
+  height:30px;
+  width: max-content;
+  background-color: #eaeaea;
+  border-radius: 3px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.imgProfil>label>span{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #003580;
+  color: #1ced2a;
+  cursor: pointer;
+}
+
+.imgProfil>label>img{  
+  height: 20px;
+  width: 20px;
+}
+
+.buttonAddress{
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  position: relative;
+}
+
+.editProfile{
+  margin: 10px;
+  width: 120px;
+  height: 40px;
+  border: 2px solid #1ced2a;
+  color: black;
+  background: lightblue;
+  border-radius: 3px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+
+}
+
+.editProfile:hover {
+  border: 2px solid lightblue;
+  color: white;
+  background: #1ced2a;  
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.saveProfile{
+  margin: 10px;
+  width: 120px;
+  height: 40px;
+  border: 2px solid #003580;
+  color: black;
+  background: lightblue;
+  border-radius: 3px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  /* position: fixed; */
+  /* left: 25px; */
+}
+
+.saveProfile:hover {
+  border: 2px solid lightblue;
+  color: white;
+  background: #003580;  
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+
+.cancelSave{
+  margin: 10px;
+  width: 120px;
+  height: 40px;
+  border: 2px solid #f42a2a;
+  color: black;
+  background: lightblue;
+  border-radius: 3px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cancelSave:hover {
+  border: 2px solid lightblue;
+  color: white;
+  background: #f42a2a;  
+  transition: 0.5s;
+  cursor: pointer;
+}
