@@ -117,6 +117,9 @@
   width: 70%;
 }
 
+.Addressfield{
+  text-transform: uppercase;
+}
 
 .buttonAddress{
   display: flex;

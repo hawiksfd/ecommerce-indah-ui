@@ -23,21 +23,59 @@ export const getCity = createAsyncThunk("GET_CITY", async (id) => {
     const resp = await api.get(`kota/${id}`);
     let dataCity = JSON.stringify(resp.data.rajaongkir.results);
     let newDataCity = JSON.parse(dataCity);
-    // let newDataCity = dataCity.unshift({
-    //   province_id: "0",
-    //   province: "--- Pilih Provinsi ---",
-    //   disabled: true,
-    // });
-    console.log(newDataCity);
+    let citydis = {
+      city_id: "0",
+      city_name: "--- Pilih Kota ---",
+      disabled: true,
+    };
+    newDataCity.unshift(citydis);
     return newDataCity;
   } catch (error) {
     console.log(error);
   }
 });
 
+export const getShipCost = createAsyncThunk(
+  "GET_SHIPCOST",
+  async ({ asal, tujuan, berat, kurir }) => {
+    try {
+      const respCost = await api.get(
+        `/ongkos/${asal}/${tujuan}/${berat}/${kurir}`
+      );
+      let shipCost = JSON.stringify(respCost.data.rajaongkir.results);
+      let newshipCost = JSON.parse(shipCost);
+      // console.log(newshipCost);
+      return newshipCost;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const updateAddress = createAsyncThunk(
+  "EDIT_ADDRESS",
+  async ({ uid, formDataAddress }) => {
+    try {
+      const resp = await privateApi.patch(
+        `edit-address-user/${uid}`,
+        formDataAddress,
+        {
+          headers: {
+            "Content-type": "multipart/form-data",
+          },
+        }
+      );
+      return resp;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 const initialState = {
   provinsi: [],
   kota: [],
+  ongkir: [],
 };
 
 const AddressSlice = createSlice({
@@ -49,6 +87,9 @@ const AddressSlice = createSlice({
     });
     builder.addCase(getCity.fulfilled, (state, action) => {
       state.kota = action.payload;
+    });
+    builder.addCase(getShipCost.fulfilled, (state, action) => {
+      state.ongkir = action.payload;
     });
   },
 });

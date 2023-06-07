@@ -5,7 +5,14 @@ import { api, privateApi } from "../services/setupInterceptor";
 export const getUser = createAsyncThunk("USERS", async (uid) => {
   try {
     const user = await privateApi.get(`get-user/${uid}`);
-    return user;
+    const cityObj = JSON.parse(user?.city);
+    const resCity = cityObj.city;
+    const resCityId = cityObj.cityId;
+    const provObj = JSON.parse(user?.province);
+    const resProv = provObj.province;
+    const resProvId = provObj.provId;
+
+    return { user, resCity, resProv, resCityId, resProvId };
   } catch (error) {
     console.log(error);
   }
@@ -49,6 +56,10 @@ export const editAddress = createAsyncThunk(
 
 const initialState = {
   user: {},
+  resCity: "",
+  resProv: "",
+  resCityId: "",
+  resProvId: "",
 };
 
 const userSlice = createSlice({
@@ -56,7 +67,11 @@ const userSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(getUser.fulfilled, (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
+      state.resCity = action.payload.resCity;
+      state.resProv = action.payload.resProv;
+      state.resCityId = action.payload.resCityId;
+      state.resProvId = action.payload.resProvId;
     });
   },
 });

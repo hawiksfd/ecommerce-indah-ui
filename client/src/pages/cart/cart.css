@@ -233,6 +233,10 @@ input:focus{
   margin: 10px 0px 20px 0px;
 }
 
+.totalCost>:last-child{
+  font-weight: 600;
+}
+
 .shipLabel{
   display: inline-block; 
   margin-bottom: 5px; 
@@ -240,6 +244,18 @@ input:focus{
   line-height: 1.25rem; 
   font-weight: 500; 
   text-transform: uppercase; 
+}
+
+.shipLabel.Parent{
+  font-size: 17px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between ;
+}
+
+.shipLabel.Parent>:last-child{
+  font-weight: 600;
 }
 
 .shipOption{
@@ -250,6 +266,29 @@ input:focus{
   line-height: 1.25rem; 
   width: 100%;
   margin-bottom: 20px;
+  text-transform: uppercase; 
+
+}
+
+.addressCost{
+  
+}
+
+.addressLabel{
+  display: inline-block; 
+  font-size: 0.875rem;
+  line-height: 1.25rem; 
+  font-weight: 500; 
+  text-transform: uppercase;
+}
+
+.addressName{
+  font-weight: 600;
+  margin: 5px; 
+}
+
+.addressInfo{
+  margin: 5px 5px 30px 5px;
 }
 
 .titleCode{
@@ -305,6 +344,10 @@ input:focus{
   font-size: 20px;
   font-weight: 500;
   margin: 10px 0px 20px 0px;
+}
+
+.grandTotalCost>:last-child{
+  font-weight: 600;
 }
 
 .contentCost>button{

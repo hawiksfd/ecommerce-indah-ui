@@ -6,10 +6,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 const MyAccount = (prop) => {
+  const user = prop.data;
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const user = prop.data;
+  // const { user } = useSelector((state) => state.user);
 
   const { uid } = useSelector((state) => state.auth);
 
@@ -59,11 +61,11 @@ const MyAccount = (prop) => {
     // console.log(formData)
      try {
         await dispatch(editProfile({uid, formData}));
-        // navigate(`/user/${uid}`);
-        setEditActive(0)
+        await dispatch(getUser(uid));
     } catch (error) {
         console.log(error)
     }
+    setEditActive(0)
   }
 
   return (
@@ -174,10 +176,10 @@ const MyAccount = (prop) => {
           {!editActive ?
             <button className='editProfile' onClick={handleEditUser}>Edit</button>
             :
-            <>
+            <div className="buttonAddress">
               <button className='cancelSave' onClick={handleCancelUser}>Cancel</button>
               <button className='saveProfile' onClick={handleUpdateUser}>Save</button>
-            </>
+            </div>
           }
         </div>
       </form>

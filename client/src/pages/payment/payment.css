@@ -1,0 +1,26 @@
+
+.pay {
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto' , sans-serif
+}
+
+.containerPay {
+  height: max-content;
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  justify-content: center;
+}
+
+.contentPay{
+  background-color: lightgreen;
+  height: max-content;
+  width: 100%;
+  max-width: 512px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+}

@@ -2,13 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import jwt_decoded from "jwt-decode";
-
 import { api, privateApi } from "../services/setupInterceptor";
-// import { useDispatch } from "react-redux";
-
-// const user = JSON.parse(localStorage.getItem("user"));
-
-// const dispatch = useDispatch();
 
 export const register = createAsyncThunk(
   "auth/register",

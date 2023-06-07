@@ -24,10 +24,14 @@ const Navbar = () => {
     if(uid){
       dispatch(getCartbyUserUid(uid));
     }
+    // else{
+    //   navigate("/login")
+    // }
   }, [dispatch, uid, navigate])
   
   const handleLogout = async () => {
     await dispatch(logout());
+      navigate("/")
   };
 
   return (
@@ -50,7 +54,7 @@ const Navbar = () => {
                 <div className="shopIcons">
                   <Link to={`/cart/${uid}`}>
                     <FontAwesomeIcon className="shopIcons2" icon={faCartShopping}/>
-                    <span className="badge">{cartuid.length}</span>
+                    <span className="badge">{cartuid ? cartuid.length : 0}</span>
                   </Link>
                 </div>
                 <div className="navItems">      

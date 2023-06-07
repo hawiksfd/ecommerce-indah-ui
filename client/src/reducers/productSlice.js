@@ -8,11 +8,10 @@ export const discountPrice = (price, disc) => {
 };
 
 export const formatRupiahId = (price) => {
-  let priceRup = price.toLocaleString("id-ID", {
-    style: "currency",
+  return new Intl.NumberFormat("id-ID", {
     currency: "IDR",
-  });
-  return priceRup;
+    style: "currency",
+  }).format(price);
 };
 
 // buat control get product
@@ -57,7 +56,7 @@ export const deleteProducts = createAsyncThunk(
 // buat control get product dari id
 export const getProduct = createAsyncThunk("getProduct", async (prdid) => {
   const response = await privateApi.get(`get-product/${prdid}`);
-  console.log(response);
+  // console.log(response);
   return response;
 });
 

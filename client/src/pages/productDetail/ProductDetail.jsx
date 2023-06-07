@@ -61,20 +61,6 @@ const ProductDetail = () => {
     }
   ];
 
-  // const discountPrice = (price, disc) => {
-  //   let afterDisc = price - (price*disc/100);
-  //   let priceFrmt = formatRupiahId(afterDisc);
-  //   return priceFrmt;
-  // }
-
-  const formatRupiah = (price) => {
-    let priceRup = price
-    // .toLocaleString('id-ID', {
-    //   style: 'currency',
-    //   currency: 'IDR'
-    // });
-    return priceRup;
-  }
 
   const handleCek = async () => {
     dispatch(getProduct(prdid));
@@ -84,7 +70,7 @@ const ProductDetail = () => {
     <div>
     <Navbar/>
       <div className="productDetail">
-        <button onClick={handleCek}>cek</button>
+        {/* <button onClick={handleCek}>cek</button> */}
         <>
           <div className="containerPrdDetail" key={prdbyid.uuid}>
             <div className="imageProduct">
@@ -106,12 +92,12 @@ const ProductDetail = () => {
               <div className="price">
                 {!prdbyid.discount ? (
                   <div className="hargasli">
-                    <h2>{formatRupiah(prdbyid.price)}</h2>
+                    <h2>{formatRupiahId(prdbyid.price)}</h2>
                   </div>
                 ) : (
                   <div className="hargaDiskonPd">
                     <div className="hargadiskPd">
-                      <h3>{formatRupiah(prdbyid.price)}</h3>
+                      <h3>{formatRupiahId(prdbyid.price)}</h3>
                     </div>
                     <div className="diskonPd">
                       <h2>
@@ -120,7 +106,6 @@ const ProductDetail = () => {
                           prdbyid.discount.discount_percent
                         )}
                       </h2>
-                      {/* <button onClick={()=> discountPrice(item.price, item.discount.discount_percent)}>Rp. </button> */}
                       <span>─ {prdbyid.discount.discount_percent} %</span>
                     </div>
                   </div>

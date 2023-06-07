@@ -6,6 +6,7 @@ import {useNavigate, Link} from "react-router-dom";
 import Navbar from './../../components/navbar/Navbar';
 import './home.css';
 import { privateApi } from './../../services/setupInterceptor';
+import { logout } from './../../reducers/auth';
 
 
 const Home = () => {
@@ -13,24 +14,31 @@ const Home = () => {
   const dispatch = useDispatch();
   
   const { uid } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.user);
   const {product} = useSelector((state) => state.product);
 
   useEffect(() => {
     dispatch(getProducts());
-  }, [dispatch, uid])
+    // if (!user) {
+    //   dispatch(logout());
+    // }
+  }, [dispatch])
 
-  const handleToCart = async ( pid) => {
-    // e.preventDefault();
+  const handleToCart = async (pid) => {
     const qty = 1;
-    const cart = await privateApi.get(`get-chart-by-product/${pid}`);
-    let cartExist = cart[0];
-    if(!cartExist){
-      await dispatch(addToCart({pid, uid, qty}));
+    if(!uid){
+      navigate('/login')
     }else{
-      let crtid = cart[0].uuid;
-      await dispatch(updateToChart({pid, crtid, qty}));
+      const cart = await privateApi.get(`get-chart-by-product/${pid}`);
+      let cartExist = cart[0];
+      if(!cartExist){
+        await dispatch(addToCart({pid, uid, qty}));
+      }else{
+        let crtid = cart[0].uuid;
+        await dispatch(updateToChart({pid, crtid, qty}));
+      }
+      await dispatch(getCartbyUserUid(uid));
     }
-    await dispatch(getCartbyUserUid(uid));
   }
 
   return (

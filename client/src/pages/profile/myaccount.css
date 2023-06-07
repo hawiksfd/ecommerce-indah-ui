@@ -126,6 +126,12 @@
   position: relative;
 }
 
+.buttonAddressUpdate{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .editProfile{
   margin: 10px;
   width: 120px;

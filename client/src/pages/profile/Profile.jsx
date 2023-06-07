@@ -27,26 +27,8 @@ const Profile = () => {
   useEffect(() => {
     // console.log(uid)
     dispatch(getUser(uid));
+    
   }, [uid, dispatch])
-
-  // const handleUser = () => {
-  //   console.log(userId.uid)
-  //   console.log(userId.isAuthenticated)
-  //   console.log(userId.isLoading)
-  //   console.log(JSON.parse(userId.user))
-  // }
-  
-  // const handleUserRedux = () => {
-  //   console.log(uid);
-  //   console.log(user);
-  // }
-
-  // const handlecekProduct = () => {
-  //   const prd = product.find(obj => obj.uuid === id);
-  //   console.log(prd);
-  //   console.log(prd.url_img_prd)
-  // }
-
 
   return (
     <div>
@@ -78,8 +60,6 @@ const Profile = () => {
               </div>
               <div className="panels">
                 <div className={`panel ${checkSidebarActive(1, "active")}`}>
-                  {/* <button onClick={handlecekProduct}>cek user</button> */}
-                  {/* <button onClick={handleUserRedux}>cek user Redux</button> */}
                   <MyAccount data={user}/>
                 </div>
                 <div className={`panel ${checkSidebarActive(2, "active")}`}>

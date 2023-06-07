@@ -1,14 +1,19 @@
 import React,{ useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { editAddress } from './../../reducers/user';
+import { editAddress, getUser } from './../../reducers/user';
 import './setting.css'
-import { getProvince, getCity } from './../../reducers/address';
+import { getProvince, getCity,updateAddress } from './../../reducers/address';
 import { api } from "../../services/setupInterceptor.js";
 import { getProduct } from './../../reducers/productSlice';
 
 const Setting = (prop) => {
   const user = prop.data;
+
+  const { resCity, resProv } = useSelector((state) => state.user);
+  const { uid } = useSelector((state) => state.auth);
+  const { provinsi, kota } = useSelector((state) => state.address);
+
   const [tabActiveIndex, setTabActiveIndex] = useState(1);
   const [editActive, setEditActive] = useState(0);
   const handleTabClick = (index) => setTabActiveIndex(index);
@@ -16,42 +21,52 @@ const Setting = (prop) => {
 
   const [address, setAddress] = useState(user.address);
   const [kecamatan, setKecamatan] = useState(user.kecamatan);
-  const [city, setCity] = useState(user.city);
-  const [province, setProvince] = useState(user.province);
+  const [city, setCity] = useState(resCity);
+  const [province, setProvince] = useState(resProv);
   const [pcode, setPcode] = useState(user.pcode);
-  const [selectedProv, setSelectedProv] = useState("");
+  const [provId, setProvId] = useState("");
+  const [newProv, setNewProv] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [cityId, setCityId] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const { uid } = useSelector((state) => state.auth);
-  const { provinsi, kota } = useSelector((state) => state.address);
-
+    
+  // useEffect(() => {
+  //   dispatch(getUser(uid));
+  // }, [dispatch, uid])
+  
   useEffect(() => {
-    // dispatch(getUser(uid));
+    
     if(uid){
       setAddress(user.address);
       setKecamatan(user.kecamatan);
-      setCity(user.city);
-      setProvince(user.province);
+      setCity(resCity);
+      setProvince(resProv);
       setPcode(user.pcode);
     }
   }, [dispatch, uid, user])
 
-// useEffect(() => {
-//   if(error)
-//       navigate(`/user/${uid}`);
-// }, [navigate, uid])
 
-  const UpdateAddress = async (e) => {
-    e.preventDefault();
+  const UpdateAddress = async () => {
+    const formDataAddress = new FormData();
+    formDataAddress.append("address",address);
+    formDataAddress.append("pcode",pcode);
+    formDataAddress.append("kecamatan",kecamatan);
+    formDataAddress.append("city",selectedCity);
+    formDataAddress.append("province",newProv);
+    formDataAddress.append("provId",provId);
+    formDataAddress.append("cityId",cityId);
+    console.log({newProv, provId ,selectedCity,cityId})
     try {
-        await dispatch(getProvince());
-        // navigate(`/user/${uid}`);
+        await dispatch(updateAddress({uid, formDataAddress}));
+        await navigate(`/user/${uid}`);
     } catch (error) {
         console.log(error)
     }
-    setEditActive(0);
+    await setEditActive(0);
+    await dispatch(getUser(uid));
+
   }
 
   const editAddress = async (e) => {
@@ -60,14 +75,38 @@ const Setting = (prop) => {
     await setEditActive(1);
   }
 
-  const getKota = async (id) => {
-    await dispatch(getCity(id));
+  const handleCancelUser = (e) => {
+    e.preventDefault();
+    setEditActive(0);
+    setProvId("");
+    setNewProv("");
+    setSelectedCity("");
+    setCityId("");
   }
 
-  const handleSelectChange = async (e) => {
-    await setSelectedProv(e.target.value);    
-    await getKota(e.target.value);
+  const handleSelectChangeProv = async (e) => {
+    const provinceId = e.target.value;
+    await setProvId(provinceId);
+    await dispatch(getCity(provinceId));
+
+    const selectedProvinceName = await provinsi.find(provinsi =>
+      provinsi.province_id === provinceId)?.province;
+    
+    await setNewProv(selectedProvinceName);
+    console.log(selectedProvinceName)
   }
+  
+  const handleSelectChangeCity = async (e) => {
+    const city_id = e.target.value;
+    setCityId(city_id);
+
+    const newCity = await kota.find(kota =>
+      kota.city_id === city_id)?.city_name;
+
+    await setSelectedCity(newCity);
+    console.log(selectedCity)
+  }
+  
 
   return (
     <div className='containerSetting'>
@@ -101,14 +140,11 @@ const Setting = (prop) => {
                       <div className="dataTitle">
                         Provinsi
                       </div>
-                      {/* <input
-                        type="text" 
-                        placeholder='Provinsi' 
-                        defaultValue={province}
-                        onChange={(e)=> setProvince(e.target.value)}
-                      /> */}
                       <span>{province}</span>
-                        <select value={selectedProv} onChange={handleSelectChange}>
+                        <select 
+                          // value={selectedProv}
+                          onChange={handleSelectChangeProv}
+                        >
                           {provinsi.map((item) => (
                             <option
                               key={item.province_id}
@@ -125,14 +161,12 @@ const Setting = (prop) => {
                       <div className="dataTitle">
                         Kota / Kabupaten
                       </div>
-                      {/* <input
-                        type="text" 
-                        placeholder='kota' 
-                        defaultValue={city} 
-                        onChange={(e)=> setCity(e.target.value)}
-                      /> */}
                       <span>{city}</span>
-                      <select>
+                      <select
+                        // value={}
+                        onChange={handleSelectChangeCity}
+                      >
+                        {/* <option value="" disabled>--- Pilih Kota ---</option> */}
                         {kota.map((item) => (
                           <option
                             key={item.city_id}
@@ -155,9 +189,13 @@ const Setting = (prop) => {
                         onChange={(e)=> setKecamatan(e.target.value)}
                       /> */}
                       <span>{kecamatan}</span>
-                      <select>
-                        <option>--- Pilih Kabupaten / Kecamatan ---</option>
-                      </select>
+                      <input 
+                        type="text" 
+                        className="Addressfield"
+                        placeholder='Kecamatan' 
+                        defaultValue={kecamatan}
+                        onChange={(e)=> setKecamatan(e.target.value)}
+                      />
                     </div>
                     <div className={`data${editActive === 1 ? "active" : ""}`}>
                       <div className="dataTitle">
@@ -170,9 +208,12 @@ const Setting = (prop) => {
                         onChange={(e)=> setPcode(e.target.value)}
                       /> */}
                       <span>{pcode}</span>
-                      <select>
-                        <option>--- Pilih Kode Pos ---</option>
-                      </select>
+                      <input 
+                        type="text" 
+                        placeholder='Kode Pos'
+                        defaultValue={pcode}
+                        onChange={(e)=> setPcode(e.target.value)}
+                      />
                     </div>
                     <div className={`data${editActive === 1 ? "active" : ""}`}>
                       <div className="dataTitle">
@@ -182,6 +223,7 @@ const Setting = (prop) => {
                       <input 
                         type="text" 
                         placeholder='address' 
+                        className="Addressfield"
                         defaultValue={address}
                         onChange={(e)=> setAddress(e.target.value)}
                       />
@@ -191,7 +233,10 @@ const Setting = (prop) => {
                     {!editActive ?
                       <button className='editAddress' onClick={editAddress}>Edit</button>
                       :
-                      <button className='saveAddress' onClick={UpdateAddress}>Save</button>
+                      <div className="buttonAddressUpdate">
+                        <button className='cancelSave' onClick={handleCancelUser}>Cancel</button>
+                        <button className='saveAddress' onClick={UpdateAddress}>Save</button>
+                      </div>
                     }
                   </div>
                 </div>
